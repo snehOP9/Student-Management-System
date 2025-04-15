@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block hero %}
+<div class="hero-section">
+  <h1>Student Dashboard</h1>
+  <p>Your information and status.</p>
+</div>
+{% endblock %}
+{% block content %}
+{% if student %}
+<h2>{{ student.name }}</h2>
+<p>Roll: {{ student.roll }}</p>
+<p>Branch: {{ student.branch }}</p>
+<p>Email: {{ student.email }}</p>
+<p>Math: {{ student.subjects.Math }}</p>
+<p>Physics: {{ student.subjects.Physics }}</p>
+<p>Chemistry: {{ student.subjects.Chemistry }}</p>
+<p>Attendance: {{ student.attendance }}%</p>
+<p>Fees Paid: {{ 'Yes' if student.fees_paid else 'No' }}</p>
+{% else %}
+<h2>No record found.</h2>
+{% endif %}
+{% endblock %}

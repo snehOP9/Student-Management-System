@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block hero %}
+<div class="hero-section">
+  <h1>Admin Dashboard</h1>
+  <p>Manage all student records.</p>
+</div>
+{% endblock %}
+{% block content %}
+<a class="btn btn-primary" href="{{ url_for('add_student') }}">Add Student</a>
+<div class="search-wrapper">
+  <input type="text" id="searchInput" placeholder="Search..."/>
+</div>
+<h2>All Students</h2>
+<table id="studentTable">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Roll</th>
+            <th>Branch</th>
+            <th>Email</th>
+            <th>Subjects</th>
+            <th>Attendance</th>
+            <th>Fees Paid</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for s in students %}
+        <tr>
+            <td>{{ s.id }}</td>
+            <td>{{ s.name }}</td>
+            <td>{{ s.roll }}</td>
+            <td>{{ s.branch }}</td>
+            <td>{{ s.email }}</td>
+            <td>
+              Math: {{ s.subjects.Math }},
+              Physics: {{ s.subjects.Physics }},
+              Chemistry: {{ s.subjects.Chemistry }}
+            </td>
+            <td>{{ s.attendance }}%</td>
+            <td>{{ 'Yes' if s.fees_paid else 'No' }}</td>
+            <td>
+                <a href="{{ url_for('update_student', id=s.id) }}">Edit</a>
+                <form method="post" action="{{ url_for('delete_student', sid=s.id) }}" style="display:inline;">
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+{% block scripts %}
+<script>
+const i=document.getElementById("searchInput"),b=document.getElementById("studentTable").getElementsByTagName("tbody")[0];i.addEventListener("input",function(){const t=i.value.toLowerCase(),r=b.getElementsByTagName("tr");for(let n=0;n<r.length;n++){let c=r[n].innerText.toLowerCase();r[n].style.display=c.indexOf(t)>-1?"":"none"}});
+</script>
+{% endblock %}

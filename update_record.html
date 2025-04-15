@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block hero %}
+<div class="hero-section">
+  <h1>Update Record</h1>
+  <p>Adjust subjects, attendance, and fees status.</p>
+</div>
+{% endblock %}
+{% block content %}
+<form method="post">
+    <label>Math</label><input type="number" name="math" value="{{ student.subjects.Math }}" required>
+    <label>Physics</label><input type="number" name="physics" value="{{ student.subjects.Physics }}" required>
+    <label>Chemistry</label><input type="number" name="chem" value="{{ student.subjects.Chemistry }}" required>
+    <label>Attendance</label><input type="number" name="attendance" value="{{ student.attendance }}" required>
+    <label>Fees Paid</label><input type="checkbox" name="fees_paid" {% if student.fees_paid %}checked{% endif %}>
+    <button type="submit">Update</button>
+</form>
+{% endblock %}

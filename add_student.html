@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block hero %}
+<div class="hero-section">
+  <h1>Add Student</h1>
+  <p>Create a new student record.</p>
+</div>
+{% endblock %}
+{% block content %}
+<h2>Add Student</h2>
+<form method="post">
+    <label>Name</label><input type="text" name="name" required>
+    <label>Roll Number</label><input type="text" name="roll_number" required>
+    <label>Branch</label><input type="text" name="branch">
+    <label>Email</label><input type="email" name="email">
+    <label>Marks</label><input type="number" name="marks" required>
+    <button type="submit">Add</button>
+</form>
+{% endblock %}
