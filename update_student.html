@@ -1,0 +1,13 @@
+
+{% extends 'base.html' %}
+{% block content %}
+<h2>Update Student</h2>
+<form method="post">
+    <label>Name</label><input type="text" name="name" value="{{ student.name }}" required>
+    <label>Roll Number</label><input type="text" name="roll_number" value="{{ student.roll_number }}" required>
+    <label>Branch</label><input type="text" name="branch" value="{{ student.branch }}">
+    <label>Email</label><input type="email" name="email" value="{{ student.email }}">
+    <label>Marks</label><input type="number" name="marks" value="{{ student.marks }}" required>
+    <button type="submit">Update</button>
+</form>
+{% endblock %}
